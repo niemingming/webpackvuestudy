@@ -1,0 +1,30 @@
+pipeline:
+  build:
+    image: registry.haier.net/library/node:8.9.0-slim
+    environment:
+      - AUTO_GENERATE=yes
+    commands:
+      - npm config set registry http://10.138.16.188:4873
+      - npm install
+      - npm run build
+    volumes:
+      - /data/npm/:/root/.npm
+  publish:
+    image: plugins/docker
+    registry: registry.haier.net
+    repo: registry.haier.net/omm_gitlab/mobility-ui
+    secrets: [ docker_username, docker_password ]
+    dockerfile: Dockerfile
+    tags:
+      - ${DRONE_TAG}
+    force_tag: true
+    when:
+      event: tag
+
+  notify:
+    image: registry.haier.net/library/drone-notify:latest
+    users: 
+      - "01479820"
+    when:
+      status: [success, failure]
+
