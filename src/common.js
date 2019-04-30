@@ -1,7 +1,7 @@
 
 const config = {
     hosts:{
-        authorurl:"https://faq.haier.net"
+        authorurl:"https://faq.haier.net/gateway"
     },
     token:''
 }
