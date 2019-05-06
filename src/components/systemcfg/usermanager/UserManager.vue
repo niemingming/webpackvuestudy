@@ -42,7 +42,7 @@
                     </el-form-item>
                 </el-form>
             </el-dialog>
-            <el-dialog :visible.sync="transferinfo.visiable" :title="$t('barButton.authorize')" width="550px">
+            <el-dialog :visible.sync="transferinfo.visiable" :title="$t('barButton.authorize')" width="550px" style="text-align: left;">
                 <el-transfer
                         :titles="[$t('user.transfer.unselected'),$t('user.transfer.selected')]"
                         :data="transferinfo.data"
